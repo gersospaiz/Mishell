@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Mi AMOR ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI', sans-serif;
+}
+
+body{
+    height:100vh;
+    background: radial-gradient(circle at center, #1a002a, black);
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    perspective:1500px;
+    color:white;
+}
+
+/* ESTRELLAS */
+.stars{
+    position:absolute;
+    width:100%;
+    height:100%;
+    z-index:0;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:0.2;}
+    to{opacity:1;}
+}
+
+/* FRASES */
+.phrase{
+    position:absolute;
+    color:#ff99cc;
+    font-size:14px;
+    opacity:0.9;
+    z-index:1;
+    animation: floatText linear infinite;
+}
+
+@keyframes floatText{
+    from{ transform: translateY(110vh); }
+    to{ transform: translateY(-120vh); }
+}
+
+/* CONTENEDOR CENTRAL */
+.center-container{
+    position:relative;
+    width:500px;
+    height:500px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    transform-style:preserve-3d;
+    animation: rotate 30s infinite linear;
+    z-index:2;
+}
+
+@keyframes rotate{
+    from{ transform: rotateY(0deg) rotateX(10deg); }
+    to{ transform: rotateY(360deg) rotateX(10deg); }
+}
+
+/* CORAZÓN */
+.heart{
+    position:absolute;
+    font-size:110px;
+    transform:translateZ(120px);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{ transform:translateZ(120px) scale(1); }
+    50%{ transform:translateZ(120px) scale(1.2); }
+    100%{ transform:translateZ(120px) scale(1); }
+}
+
+/* FOTOS */
+.photo{
+    position:absolute;
+    width:170px;
+    height:230px;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 0 25px #ff4da6;
+}
+
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* NOMBRE */
+.name{
+    position:absolute;
+    top:40px;
+    font-size:3rem;
+    color:#ff4da6;
+    text-shadow:0 0 20px #ff1a8c;
+    z-index:3;
+}
+
+/* BOTÓN */
+button{
+    position:absolute;
+    bottom:40px;
+    padding:12px 25px;
+    background:#ff1a8c;
+    border:none;
+    border-radius:30px;
+    color:white;
+    cursor:pointer;
+    font-size:1rem;
+    box-shadow:0 0 15px #ff4da6;
+    z-index:3;
+}
+
+/* MENSAJE */
+.secret{
+    position:absolute;
+    background:rgba(0,0,0,0.9);
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    display:none;
+    z-index:4;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<div class="name">Mishell 💖</div>
+
+<div class="center-container">
+
+    <div class="heart">❤️</div>
+
+    <div class="photo" style="transform: rotateY(0deg) translateZ(350px);">
+        <img src="foto1.jpeg">
+    </div>
+
+    <div class="photo" style="transform: rotateY(90deg) translateZ(350px);">
+        <img src="foto2.jpeg">
+    </div>
+
+    <div class="photo" style="transform: rotateY(180deg) translateZ(350px);">
+        <img src="foto3.jpeg">
+    </div>
+
+    <div class="photo" style="transform: rotateY(270deg) translateZ(350px);">
+        <img src="foto4.jpeg">
+    </div>
+
+</div>
+
+<button onclick="mostrarMensaje()">Ábreme 💌</button>
+
+<div class="secret" id="mensaje">
+    <h2>Mishell ❤️</h2>
+    <p>Eres mi universo entero ✨</p>
+    <p>Mi amor eterno 💖</p>
+    <p>Contigo lo es todo 💞</p>
+    <p>Te amo hoy y siempre 💘</p>
+</div>
+
+<!-- Canción más romántica -->
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_6e06e6f7a4.mp3?filename=romantic-ambient-110397.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+/* ESTRELLAS */
+const starsContainer = document.querySelector(".stars");
+for(let i=0;i<300;i++){
+    const star = document.createElement("div");
+    star.classList.add("star");
+    star.style.top = Math.random()*100+"%";
+    star.style.left = Math.random()*100+"%";
+    star.style.animationDuration = (Math.random()*3+1)+"s";
+    starsContainer.appendChild(star);
+}
+
+/* FRASES POR TODA LA PANTALLA */
+const frases = [
+"Te amo ❤️",
+"Eres mi felicidad ✨",
+"Mi princesa 💖",
+"Mi todo 💞",
+"Mi vida 💘",
+"Mi razón de sonreír 😊",
+"Siempre tú 💗",
+"Mi universo 🌌",
+"Mi amor eterno 💕",
+"Contigo lo es todo 💓"
+];
+
+for(let i=0;i<50;i++){
+    const texto = document.createElement("div");
+    texto.classList.add("phrase");
+    texto.innerText = frases[Math.floor(Math.random()*frases.length)];
+    texto.style.left = Math.random()*100+"%";
+    texto.style.animationDuration = (Math.random()*15+10)+"s";
+    texto.style.fontSize = (Math.random()*10+12)+"px";
+    document.body.appendChild(texto);
+}
+
+/* MOSTRAR MENSAJE Y ACTIVAR MÚSICA */
+function mostrarMensaje(){
+    document.getElementById("mensaje").style.display="block";
+    document.getElementById("music").play();
+}
+
+</script>
+
+</body>
+</html>
